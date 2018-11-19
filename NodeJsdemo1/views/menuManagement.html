@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale-1">
+<meta name="format-delection" content="telephone=no" />
+<script type="text/javascript" src="../javascripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../javascripts/menuManagement.js"></script>
+<script type="text/javascript" src="../javascripts/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../stylesheets/bootstrap.min.css"
+	type="text/css" />
+</head>
+<body>
+	<!-- 界面头部 -->
+	<nav class="navbar navbar-default navbar-static" role="navigation">
+		<div class="navbar-header">
+			<a class='btn btn-lg' href='hello'> <span
+				class='glyphicon glyphicon-chevron-left'></span>
+			</a> 
+			<span style='font-size: 20px;margin-left:30%' >菜单管理</span>
+		</div>
+	</nav>
+	<!-- 界面内容 -->
+	<div class="container">
+		<div class="input-group" style="border-bottom:1px solid lightgray;padding-bottom:5%">
+			<input type="text" class="form-control" placeholder="检索菜单名" id="menuname">
+			<span class="input-group-addon glyphicon glyphicon-search btn" onclick="cl(),findmenu()"></span>
+		</div>
+		<div style="margin-top:5%">
+			<button class="btn btn-default" data-toggle="modal"
+					data-target="#insertmenu"><span class='glyphicon glyphicon-plus'></span>新建菜单</button>
+		</div>
+		<div class="panel panel-default" style="margin-top:5%">
+			<div class="panel-heading">
+				<span>人员信息</span>
+			</div>
+			<div class="panel-body" id="info">
+				<table class="table table-striped" id="menuinfo">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>菜单名</th>
+							<th>菜单地址</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>			
+		</div>	
+	</div>
+	<!-- 新建菜单模态框 -->
+	<div class="modal fade" id="insertmenu" tabindex="-1" role="dialog"
+		aria-labelledby="myModadlLabel" aria-hidden="true"
+		style='display: none'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">新建</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" style='color: red; margin-left: 50%'>×</button>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li>菜单名：<input type="text" id="menuName" placeholder="必填" /></li>
+						<li>菜单地址：<input type="text" id="menuurl"
+							placeholder="必填" /></li>						
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style='margin-right: 10%'>关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						onclick="addMenu()" style='margin-right: 30%'>新建</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 修改菜单信息模态框 -->
+	<div class="modal fade" id="updatemenu" tabindex="-1" role="dialog"
+		aria-labelledby="myModadlLabel" aria-hidden="true"
+		style='display: none'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">修改</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" style='color: red; margin-left: 50%'>×</button>
+				</div>
+				<div class="modal-body">
+				<input type="hidden" id="hidname"/>
+					<ul>						
+						<li>菜单名：<input type="text" id="updatename" placeholder="必填" /></li>
+						<li>菜单地址：<input type="text" id="updateurl" readonly="readonly"/></li>						
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style='margin-right: 10%'>关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						onclick="updateMenu()" style='margin-right: 30%'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

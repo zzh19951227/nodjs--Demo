@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<script type="text/javascript" src="../javascripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../javascripts/checkout.js"></script>
+<script type="text/javascript" src="../javascripts/employeeManage.js"></script>
+<link rel="stylesheet" href="../stylesheets/home.css" type="text/css" />
+<link rel="stylesheet" href="../stylesheets/employee.css"
+	type="text/css" />
+</head>
+<body onload="getUserName()">
+	<header>
+		<div id="div2">
+			欢迎您&nbsp;&nbsp;<span id="username"></span>
+			<button id="logout" onclick="clearSession()" class="button">注销</button>
+			<br>
+			<button id="changepassword" onclick="showModel2()" class="button1" style="margin-top:10px">修改密码</button>
+		</div>
+	</header>
+	<div id="modal2" class="modal" style="display: none">
+		<div class="modal-content">
+			<header class="modal-header">
+				<h2>修改密码</h2>
+				<span class="close" id="close2" onclick="closeModel2()">x</span>
+			</header>
+			<div class="modal-body">
+				<table class="modeltable">
+					<tbody>
+						<tr>
+							<td>用户名：</td>
+							<td><input type="text" id="updatename" placeholder="必填" /><input
+								type="hidden" id="h" /></td>
+						</tr>
+						<tr>
+							<td>年龄：</td>
+							<td><input type="text" id="updateage" /></td>
+						</tr>
+						<tr>
+							<td>性别：</td>
+							<td><select id="updategender">
+									<option value="male">男</option>
+									<option value="female">女</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>所属：</td>
+							<td><select id="updatedepartment">
+									<option value="1">第一事业部</option>
+									<option value="2">第二事业部</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>是否在职：</td>
+							<td><select id="updateisemployee">
+									<option value="y">在职</option>
+									<option value="n">离职</option>
+							</select></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<footer class="modal-footer">
+				<button id="insert" onclick="updateEmployee()" class="button2">修改</button>
+				<button id="close" onclick="closeModel2()" class="button2">返回</button>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

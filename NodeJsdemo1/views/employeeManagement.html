@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>人员管理</title>
+<meta name="viewport" content="width=device-width,initial-scale-1">
+<meta name="format-delection" content="telephone=no" />
+<script type="text/javascript" src="../javascripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../javascripts/employeeManage.js"></script>
+<script type="text/javascript" src="../javascripts/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../stylesheets/bootstrap.min.css"
+	type="text/css" />
+	<link rel="stylesheet" href="../stylesheets/bootstrap.css"
+	type="text/css" />
+</head>
+<body>
+	<!-- 界面头部 -->
+	<nav class="navbar navbar-default navbar-static" role="navigation">
+		<div class="navbar-header">
+			<a class='btn btn-lg' href='hello'> <span
+				class='glyphicon glyphicon-chevron-left'></span>
+			</a> 
+			<span style='font-size: 20px;margin-left:30%' >人员管理</span>
+		</div>
+	</nav>
+	<!-- 界面内容 -->
+	<div class="container">
+		<div class="input-group" style="border-bottom:1px solid lightgray;padding-bottom:5%">
+			<input type="text" class="form-control" placeholder="检索用户名" id="username">
+			<span class="input-group-addon glyphicon glyphicon-search btn" onclick="cl(),findEmployee()"></span>
+		</div>
+		<div style="margin-top:5%">
+			<button class="btn btn-default" data-toggle="modal"
+					data-target="#insertuser"><span class='glyphicon glyphicon-plus'></span>新建用户</button>
+		</div>
+		<div class="panel panel-default" style="margin-top:5%">
+			<div class="panel-heading">
+				<span>人员信息</span>
+			</div>
+			<div class="panel-body" id="info">				
+				<table class="table table-striped" id="employeeinfo">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>用户名</th>
+							<th>是否在职</th>
+							<th>部门</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>				
+			</div>			
+		</div>	
+	</div>
+	<!-- 新建用户模态框 -->
+	<div class="modal fade" id="insertuser" tabindex="-1" role="dialog"
+		aria-labelledby="myModadlLabel" aria-hidden="true"
+		style='display: none'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">新建</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" style='color: red; margin-left: 50%'>×</button>
+				</div>
+				<div class="modal-body">
+					<ul>
+						<li>姓名：<input type="text" id="name" placeholder="必填" /></li>
+						<li>密码：<input type="password" id="password"
+							placeholder="必填" value="123" readonly="readonly"/></li>
+						<li>年龄：<input type="text" id="age"/></li>
+						<li>性别：<input type="radio" name="sex" value="男" />男<input
+								type="radio" name="sex" value="女" />女</li>
+						<li>部门：<select id="depart">
+									<option value="1">第一事业部</option>
+									<option value="2">第二事业部</option>
+							</select></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style='margin-right: 10%'>关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						onclick="addEmployee()" style='margin-right: 30%'>新建</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 修改用户信息模态框 -->
+	<div class="modal fade" id="updateuser" tabindex="-1" role="dialog"
+		aria-labelledby="myModadlLabel" aria-hidden="true"
+		style='display: none'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">修改</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" style='color: red; margin-left: 50%'>×</button>
+				</div>
+				<div class="modal-body">
+				<input type="hidden" id="hidname"/>
+					<ul>						
+						<li>姓名：<input type="text" id="updatename" placeholder="必填" readonly="readonly"/></li>
+						<li>年龄：<input type="text" id="updateage"/></li>
+						<li>性别：<input type="radio" name="updatesex" value="男" />男<input
+								type="radio" name="updatesex" value="女" />女</li>
+						<li>部门：<select id="updatedepartment">
+									<option value="1">第一事业部</option>
+									<option value="2">第二事业部</option>
+							</select></li>
+						<li>是否在职：<select id="updateisemployee">
+									<option value="在职">在职</option>
+									<option value="离职">离职</option>
+							</select></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" style='margin-right: 10%'>关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+						onclick="updateEmployee()" style='margin-right: 30%'>修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 查看用户信息模态框 -->
+	<div class="modal fade" id="userinfo" tabindex="-1" role="dialog"
+		aria-labelledby="myModadlLabel" aria-hidden="true"
+		style='display: none'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">查看</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true" style='color: red; margin-left: 50%'>×</button>
+				</div>
+				<div class="modal-body">
+					<ul>						
+						<li>姓名：<span id="showname"></span></li>
+						<li>年龄：<span id="showage"></span></li>
+						<li>性别：<span id="showgender"></span></li>
+						<li>部门：<span id="showdepartment"></span></li>
+						<li>是否在职：<span id="showisemployee"></span></li>
+					</ul>
+				</div>
+				<div class="modal-footer">					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
